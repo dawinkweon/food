@@ -11,7 +11,7 @@ const SearchPage = () => {
 
   return (
     <div className="navbar">
-      <span style={{ fontSize: "32px", padding: "0px 15px" }}>🍔</span>
+      <img style={{ width: "100px", height: "100px", padding: "0px 15px" }} src="logo-lg.png"/>
       <Button type="text">Home</Button>
       <Button type="text">Create</Button>
       <Search

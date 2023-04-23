@@ -11,10 +11,11 @@ const SearchPage = () => {
 
   return (
     <div className="navbar">
-      <span style={{ fontSize: "32px" }}>🍔</span>
+      <span style={{ fontSize: "32px", padding: "0px 15px" }}>🍔</span>
       <Button type="text">Home</Button>
       <Button type="text">Create</Button>
       <Search
+        style={{ padding: "0px 15px" }}
         size="large"
         value={searchText}
         onChange={(evt) => setSearchText(evt.target.value)}

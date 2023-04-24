@@ -1,4 +1,4 @@
-import { Button } from "antd";
+import { Button, Col, Row } from "antd";
 import Search from "antd/es/input/Search";
 import React, { useState } from "react";
 
@@ -10,21 +10,35 @@ const SearchPage = () => {
   };
 
   return (
-    <div className="navbar">
-      <img alt="logo" style={{ width: "100px", height: "100px", padding: "0px 15px" }} src="logo-lg.png"/>
-      <Button type="text">Home</Button>
-      <Button type="text">Create</Button>
-      <Search
-        style={{ padding: "0px 15px" }}
-        size="large"
-        value={searchText}
-        onChange={(evt) => setSearchText(evt.target.value)}
-        allowClear
-        placeholder="Search"
-        onSearch={onSearch}
-        enterButton
-      />
-    </div>
+    // <div className="navbar">
+    <Row align="middle" justify="start">
+      <Col>
+        <img
+          alt="logo"
+          style={{ width: "100px", height: "100px", padding: "0px 0px" }}
+          src="logo-lg.png"
+        />
+      </Col>
+      <Col>
+        <Button type="text">Home</Button>
+      </Col>
+      <Col>
+        <Button type="text">Create</Button>
+      </Col>
+      <Col flex="auto">
+        <Search
+          style={{ padding: "0px 15px" }}
+          size="large"
+          value={searchText}
+          onChange={(evt) => setSearchText(evt.target.value)}
+          allowClear
+          placeholder="Search"
+          onSearch={onSearch}
+          enterButton
+        />
+      </Col>
+    </Row>
+    // </div>
   );
 };
 

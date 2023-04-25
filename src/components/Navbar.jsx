@@ -11,7 +11,7 @@ const SearchPage = () => {
 
   return (
     // <div className="navbar">
-    <Row align="middle" justify="start">
+    <Row align="middle">
       <Col>
         <img
           alt="logo"

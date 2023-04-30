@@ -1,10 +1,6 @@
-import { useState } from "react";
 import Masonry from "react-masonry-css";
-import { Urls } from "./constants";
 
-const Page = () => {
-  const [imageUrls, setImageUrls] = useState(Urls);
-
+export default function Content({imageUrls}) {
   return (
     <Masonry
       breakpointCols={{ default: 5 }}
@@ -23,5 +19,4 @@ const Page = () => {
       ))}
     </Masonry>
   );
-};
-export default Page;
+}

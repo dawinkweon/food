@@ -2,11 +2,11 @@ import { Button, Col, Row } from "antd";
 import Search from "antd/es/input/Search";
 import React, { useState } from "react";
 
-const SearchPage = () => {
+const Navbar = ({onPerformSearch}) => {
   const [searchText, setSearchText] = useState("");
 
   const onSearch = () => {
-    console.info(`Seraching text: ${searchText}`);
+    onPerformSearch(searchText);
   };
 
   return (
@@ -42,4 +42,4 @@ const SearchPage = () => {
   );
 };
 
-export default SearchPage;
+export default Navbar;

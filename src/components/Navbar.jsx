@@ -1,16 +1,11 @@
 import { Button, Col, Row } from "antd";
-import Search from "antd/es/input/Search";
-import React, { useState } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
+import { routes } from "../page/routes";
 
-const Navbar = ({onPerformSearch}) => {
-  const [searchText, setSearchText] = useState("");
-
-  const onSearch = () => {
-    onPerformSearch(searchText);
-  };
+const Navbar = ({children}) => {
 
   return (
-    // <div className="navbar">
     <Row align="middle">
       <Col>
         <img
@@ -20,25 +15,10 @@ const Navbar = ({onPerformSearch}) => {
         />
       </Col>
       <Col>
-        <Button type="text">Home</Button>
+        <Link to={routes.index.path}><Button type="text">Home</Button></Link>
       </Col>
-      <Col>
-        <Button type="text">Create</Button>
-      </Col>
-      <Col flex="auto">
-        <Search
-          style={{ padding: "0px 15px" }}
-          size="large"
-          value={searchText}
-          onChange={(evt) => setSearchText(evt.target.value)}
-          allowClear
-          placeholder="Search"
-          onSearch={onSearch}
-          enterButton
-        />
-      </Col>
+      { children }
     </Row>
-    // </div>
   );
 };
 

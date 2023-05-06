@@ -1,5 +1,8 @@
-.navbar {
+.app {
   padding: 2%;
+}
+
+.navbar {
   display: flex;
   align-items: center;
 }
@@ -25,4 +28,8 @@
 /* Style your items */
 .my-masonry-grid_column img { /* change div to reference your elements you put in <Masonry> */
   border-radius: 10px;
+}
+
+.create-container {
+  padding: 0 2%;
 }

@@ -5,12 +5,23 @@ import React, { useState } from "react";
 const Navbar = ({onPerformSearch}) => {
   const [searchText, setSearchText] = useState("");
 
+  const onTextChange = (value) => {
+    if (value === "") {
+      // force search when cleared
+      clearSearch();
+    }
+    setSearchText(value);
+  };
+
   const onSearch = () => {
     onPerformSearch(searchText);
   };
 
+  const clearSearch = () => {
+    onPerformSearch("");
+  }
+
   return (
-    // <div className="navbar">
     <Row align="middle">
       <Col>
         <img
@@ -30,7 +41,7 @@ const Navbar = ({onPerformSearch}) => {
           style={{ padding: "0px 15px" }}
           size="large"
           value={searchText}
-          onChange={(evt) => setSearchText(evt.target.value)}
+          onChange={(evt) => onTextChange(evt.target.value)}
           allowClear
           placeholder="Search"
           onSearch={onSearch}

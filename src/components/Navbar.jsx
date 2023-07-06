@@ -1,8 +1,10 @@
 import { Button, Col, Row } from "antd";
-import Search from "antd/es/input/Search";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { routes } from "../page/routes";
+import Search from "antd/es/input/Search";
 
-const Navbar = ({onPerformSearch}) => {
+const Navbar = ({onPerformSearch, children}) => {
   const [searchText, setSearchText] = useState("");
 
   const onTextChange = (value) => {
@@ -31,10 +33,7 @@ const Navbar = ({onPerformSearch}) => {
         />
       </Col>
       <Col>
-        <Button type="text">Home</Button>
-      </Col>
-      <Col>
-        <Button type="text">Create</Button>
+        <Link to={routes.index.path}><Button type="text">Home</Button></Link>
       </Col>
       <Col flex="auto">
         <Search
@@ -48,8 +47,8 @@ const Navbar = ({onPerformSearch}) => {
           enterButton
         />
       </Col>
+      { children }
     </Row>
-    // </div>
   );
 };
 

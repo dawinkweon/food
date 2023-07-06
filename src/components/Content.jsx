@@ -1,9 +1,11 @@
 import Masonry from "react-masonry-css";
 
-export default function Content({imageUrls}) {
+export default function Content({ imageUrls }) {
+  const breakpointCols = { default: 5, 1100: 4, 700: 2, 500: 1 };
+
   return (
     <Masonry
-      breakpointCols={{ default: 5 }}
+      breakpointCols={breakpointCols}
       className="my-masonry-grid"
       columnClassName="my-masonry-grid_column"
     >

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { routes } from "../page/routes";
 import Search from "antd/es/input/Search";
 
-const Navbar = ({onPerformSearch, children}) => {
+const Navbar = ({onPerformSearch, onCreateClick, children}) => {
   const [searchText, setSearchText] = useState("");
 
   const onTextChange = (value) => {
@@ -35,9 +35,12 @@ const Navbar = ({onPerformSearch, children}) => {
       <Col>
         <Link to={routes.index.path}><Button type="text">Home</Button></Link>
       </Col>
+      <Col>
+        <Button type="text" onClick={onCreateClick}>Create</Button>
+      </Col>
       <Col flex="auto">
         <Search
-          style={{ padding: "0px 15px" }}
+          style={{ padding: "0px 15px", margin: "15px 0px" }}
           size="large"
           value={searchText}
           onChange={(evt) => onTextChange(evt.target.value)}

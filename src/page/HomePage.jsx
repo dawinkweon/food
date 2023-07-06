@@ -3,7 +3,6 @@ import Content from "../components/Content";
 import Navbar from "../components/Navbar";
 import api from "../api";
 import { Drawer, Form } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
 import {
   Button,
   Cascader,
@@ -17,7 +16,6 @@ import {
   TreeSelect,
   Upload,
 } from "antd";
-import { FloatButton } from "antd";
 
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
@@ -75,9 +73,9 @@ export default function HomePage() {
 
   return (
     <>
-      <Navbar onPerformSearch={onPerformSearch}/>
+      <Navbar onPerformSearch={onPerformSearch} onCreateClick={showDrawer}/>
         <Content imageUrls={imageUrls} />
-        <Drawer title="Create" placement="right" onClose={onClose} open={open}>
+        <Drawer title="Create" placement="left" onClose={onClose} open={open}>
           <div className="create-container">
             <Form
               wrapperCol={{ span: 14 }}
@@ -164,11 +162,6 @@ export default function HomePage() {
             </Form>
           </div>
         </Drawer>
-        <FloatButton
-          type="primary"
-          icon={<PlusOutlined />}
-          onClick={showDrawer}
-        />
     </>
   );
 }

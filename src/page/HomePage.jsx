@@ -29,9 +29,8 @@ const normFile = (e) => {
 };
 
 export default function HomePage() {
-  const [searchText, setSearchText] = useState("");
   const [imageUrls, setImageUrls] = useState([]);
-  
+
   const [open, setOpen] = useState(false);
 
   const showDrawer = () => {
@@ -40,6 +39,8 @@ export default function HomePage() {
 
   const onClose = () => {
     setOpen(false);
+  };
+
   useEffect(() => {
     const fn = async () => {
       await showAllThings();
@@ -74,93 +75,100 @@ export default function HomePage() {
 
   return (
     <>
-      <Navbar onPerformSearch={onPerformSearch}>
-      <Content imageUrls={imageUrls} />
-      <Drawer title="Create" placement="right" onClose={onClose} open={open}>
-        <div className="create-container">
-          <Form
-            wrapperCol={{ span: 14 }}
-            layout="horizontal"
-            style={{ maxWidth: 600 }}
-          >
-            <Form.Item label="Checkbox" name="disabled" valuePropName="checked">
-              <Checkbox>Checkbox</Checkbox>
-            </Form.Item>
-            <Form.Item label="Radio">
-              <Radio.Group>
-                <Radio value="apple"> Apple </Radio>
-                <Radio value="pear"> Pear </Radio>
-              </Radio.Group>
-            </Form.Item>
-            <Form.Item label="Input">
-              <Input />
-            </Form.Item>
-            <Form.Item label="Select">
-              <Select>
-                <Select.Option value="demo">Demo</Select.Option>
-              </Select>
-            </Form.Item>
-            <Form.Item label="TreeSelect">
-              <TreeSelect
-                treeData={[
-                  {
-                    title: "Light",
-                    value: "light",
-                    children: [{ title: "Bamboo", value: "bamboo" }],
-                  },
-                ]}
-              />
-            </Form.Item>
-            <Form.Item label="Cascader">
-              <Cascader
-                options={[
-                  {
-                    value: "zhejiang",
-                    label: "Zhejiang",
-                    children: [
-                      {
-                        value: "hangzhou",
-                        label: "Hangzhou",
-                      },
-                    ],
-                  },
-                ]}
-              />
-            </Form.Item>
-            <Form.Item label="DatePicker">
-              <DatePicker />
-            </Form.Item>
-            <Form.Item label="RangePicker">
-              <RangePicker />
-            </Form.Item>
-            <Form.Item label="InputNumber">
-              <InputNumber />
-            </Form.Item>
-            <Form.Item label="TextArea">
-              <TextArea rows={4} />
-            </Form.Item>
-            <Form.Item label="Switch" valuePropName="checked">
-              <Switch />
-            </Form.Item>
-            <Form.Item
-              label="Upload"
-              valuePropName="fileList"
-              getValueFromEvent={normFile}
+      <Navbar onPerformSearch={onPerformSearch}/>
+        <Content imageUrls={imageUrls} />
+        <Drawer title="Create" placement="right" onClose={onClose} open={open}>
+          <div className="create-container">
+            <Form
+              wrapperCol={{ span: 14 }}
+              layout="horizontal"
+              style={{ maxWidth: 600 }}
             >
-              <Upload action="/upload.do" listType="picture-card">
-                <div>
-                  <div style={{ marginTop: 8 }}>Upload</div>
-                </div>
-              </Upload>
-            </Form.Item>
-            <Form.Item label="Button">
-              <Button>Button</Button>
-            </Form.Item>
-          </Form>
-        </div>
-      </Drawer>
-      <FloatButton type="primary" icon={<PlusOutlined />} onClick={showDrawer} />
-      </Navbar>
+              <Form.Item
+                label="Checkbox"
+                name="disabled"
+                valuePropName="checked"
+              >
+                <Checkbox>Checkbox</Checkbox>
+              </Form.Item>
+              <Form.Item label="Radio">
+                <Radio.Group>
+                  <Radio value="apple"> Apple </Radio>
+                  <Radio value="pear"> Pear </Radio>
+                </Radio.Group>
+              </Form.Item>
+              <Form.Item label="Input">
+                <Input />
+              </Form.Item>
+              <Form.Item label="Select">
+                <Select>
+                  <Select.Option value="demo">Demo</Select.Option>
+                </Select>
+              </Form.Item>
+              <Form.Item label="TreeSelect">
+                <TreeSelect
+                  treeData={[
+                    {
+                      title: "Light",
+                      value: "light",
+                      children: [{ title: "Bamboo", value: "bamboo" }],
+                    },
+                  ]}
+                />
+              </Form.Item>
+              <Form.Item label="Cascader">
+                <Cascader
+                  options={[
+                    {
+                      value: "zhejiang",
+                      label: "Zhejiang",
+                      children: [
+                        {
+                          value: "hangzhou",
+                          label: "Hangzhou",
+                        },
+                      ],
+                    },
+                  ]}
+                />
+              </Form.Item>
+              <Form.Item label="DatePicker">
+                <DatePicker />
+              </Form.Item>
+              <Form.Item label="RangePicker">
+                <RangePicker />
+              </Form.Item>
+              <Form.Item label="InputNumber">
+                <InputNumber />
+              </Form.Item>
+              <Form.Item label="TextArea">
+                <TextArea rows={4} />
+              </Form.Item>
+              <Form.Item label="Switch" valuePropName="checked">
+                <Switch />
+              </Form.Item>
+              <Form.Item
+                label="Upload"
+                valuePropName="fileList"
+                getValueFromEvent={normFile}
+              >
+                <Upload action="/upload.do" listType="picture-card">
+                  <div>
+                    <div style={{ marginTop: 8 }}>Upload</div>
+                  </div>
+                </Upload>
+              </Form.Item>
+              <Form.Item label="Button">
+                <Button>Button</Button>
+              </Form.Item>
+            </Form>
+          </div>
+        </Drawer>
+        <FloatButton
+          type="primary"
+          icon={<PlusOutlined />}
+          onClick={showDrawer}
+        />
     </>
   );
 }
@@ -168,4 +176,3 @@ export default function HomePage() {
 const isTagTooShort = (value) => !value || value.length <= 2;
 
 const mapToImage = (thing) => thing.img_url;
-}

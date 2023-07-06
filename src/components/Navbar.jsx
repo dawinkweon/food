@@ -34,10 +34,6 @@ const Navbar = ({onPerformSearch, children}) => {
       </Col>
       <Col>
         <Link to={routes.index.path}><Button type="text">Home</Button></Link>
-        <Button type="text">Home</Button>
-      </Col>
-      <Col>
-        <Button type="text">Create</Button>
       </Col>
       <Col flex="auto">
         <Search

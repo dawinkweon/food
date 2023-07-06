@@ -38,7 +38,7 @@ const Navbar = ({onPerformSearch}) => {
       </Col>
       <Col flex="auto">
         <Search
-          style={{ padding: "0px 15px" }}
+          style={{ padding: "0px 15px", margin: "15px 0px" }}
           size="large"
           value={searchText}
           onChange={(evt) => onTextChange(evt.target.value)}
@@ -49,7 +49,6 @@ const Navbar = ({onPerformSearch}) => {
         />
       </Col>
     </Row>
-    // </div>
   );
 };
 

@@ -1,9 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Content from "../components/Content";
 import Navbar from "../components/Navbar";
 import api from "../api";
-import { Col, Drawer, Form } from "antd";
-import Search from "antd/es/input/Search";
+import { Drawer, Form } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import {
   Button,
@@ -32,12 +31,7 @@ const normFile = (e) => {
 export default function HomePage() {
   const [searchText, setSearchText] = useState("");
   const [imageUrls, setImageUrls] = useState([]);
-
-  const onPerformSearch = () => {
-    const searchResults = api.search(searchText);
-    setImageUrls(searchResults);
-  };
-
+  
   const [open, setOpen] = useState(false);
 
   const showDrawer = () => {
@@ -46,24 +40,41 @@ export default function HomePage() {
 
   const onClose = () => {
     setOpen(false);
+  useEffect(() => {
+    const fn = async () => {
+      await showAllThings();
+    };
+    fn().catch(console.error);
+  }, []);
+
+  const onPerformSearch = (value) => {
+    const fn = async () => {
+      if (isTagTooShort(value)) {
+        return await showAllThings();
+      }
+
+      const thingsByTag = await api.findThingsByTag(value);
+      if (thingsByTag.length <= 0) {
+        console.trace("No match found by tag so showing all things.");
+        return await showAllThings();
+      }
+
+      console.trace("Matches found by tag, so showing them.");
+      const imgs = thingsByTag.map(mapToImage);
+      setImageUrls(imgs);
+    };
+    fn().catch(console.error);
+  };
+
+  const showAllThings = async () => {
+    const things = await api.listAllThings();
+    const imgs = things.map(mapToImage);
+    setImageUrls(imgs);
   };
 
   return (
     <>
-      <Navbar>
-        <Col flex="auto">
-          <Search
-            style={{ padding: "0px 15px" }}
-            size="large"
-            value={searchText}
-            onChange={(evt) => setSearchText(evt.target.value)}
-            allowClear
-            placeholder="Search"
-            onSearch={onPerformSearch}
-            enterButton
-          />
-        </Col>
-      </Navbar>
+      <Navbar onPerformSearch={onPerformSearch}>
       <Content imageUrls={imageUrls} />
       <Drawer title="Create" placement="right" onClose={onClose} open={open}>
         <div className="create-container">
@@ -149,6 +160,12 @@ export default function HomePage() {
         </div>
       </Drawer>
       <FloatButton type="primary" icon={<PlusOutlined />} onClick={showDrawer} />
+      </Navbar>
     </>
   );
+}
+
+const isTagTooShort = (value) => !value || value.length <= 2;
+
+const mapToImage = (thing) => thing.img_url;
 }
